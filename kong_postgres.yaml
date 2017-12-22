@@ -8,24 +8,11 @@ spec:
   - 0.0.0.0/0
   ports:
   - name: kong-proxy
-    port: 8000
+    port: 80
     targetPort: 8000
     protocol: TCP
-  selector:
-    app: kong
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: kong-proxy-ssl
-spec:
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
-  ports:
   - name: kong-proxy-ssl
-    port: 8443
+    port: 443
     targetPort: 8443
     protocol: TCP
   selector:
@@ -37,9 +24,6 @@ kind: Service
 metadata:
   name: kong-admin
 spec:
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
   ports:
   - name: kong-admin
     port: 8001
@@ -54,9 +38,6 @@ kind: Service
 metadata:
   name: kong-admin-ssl
 spec:
-  type: LoadBalancer
-  loadBalancerSourceRanges:
-  - 0.0.0.0/0
   ports:
   - name: kong-admin-ssl
     port: 8444
